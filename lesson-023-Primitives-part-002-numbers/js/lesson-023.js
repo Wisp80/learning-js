@@ -147,9 +147,117 @@ console.log(0); // 0
 console.log(-0); // -0
 
 if (-0) {
-    console.log(`You shouldn't see mee`);
+    console.log(`You shouldn't see me`);
 };
 
 console.log('--------------------------------------');
 
 /*-------------------------------------------------------------------------------------------------------------*/
+
+/*Значение NaN уникально тем, что оно не является равным ничему другому, даже самому себе.*/
+
+console.log(NaN === NaN); // false
+
+console.log('--------------------------------------');
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+/*Метод "isNaN()" преобразует значение в число и проверяет является ли оно NaN. При этом этот метод корректно
+проверяет NaN.*/
+
+console.log(isNaN(NaN)); // true NaN === NaN
+console.log(isNaN('abc')); // true 'abc' === NaN --- NaN === NaN
+console.log(isNaN('123')); // false '123' === NaN --- 123 === NaN
+console.log(isNaN(123)); // false 123 === NaN
+console.log(isNaN(Infinity)); // false Infinity === NaN
+/*Пустая строка интерпретируется как 0 во всех числовых функциях.*/
+console.log(isNaN('')); // false '' === NaN --- 0 === NaN
+
+console.log('--------------------------------------');
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+/*Метод "isFinite()" преобразует аргумент в число и возвращает true, если оно является обычным числом, т.е. не 
+NaN/Infinity/-Infinity.*/
+
+console.log(isFinite(NaN)); // false NaN !== NaN/Infinity/-Infinity
+console.log(isFinite('abc')); // false 'abc' !== NaN/Infinity/-Infinity --- NaN !== NaN/Infinity/-Infinity
+console.log(isFinite('123')); // true '123' !== NaN/Infinity/-Infinity --- 123 !== NaN/Infinity/-Infinity
+console.log(isFinite(123)); // true 123 !== NaN/Infinity/-Infinity
+console.log(isFinite(Infinity)); // false Infinity !== NaN/Infinity/-Infinity
+console.log(isFinite(-Infinity)); // false -Infinity !== NaN/Infinity/-Infinity
+console.log(isFinite('')); // true '' !== NaN/Infinity/-Infinity --- 0 !== NaN/Infinity/-Infinity
+
+console.log('--------------------------------------');
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+/*Методы "Number.isNaN()" и "Number.isFinite()" – это более строгие версии функций "isNaN()" и "isFinite()". 
+Они не занимаются преобразованием, а проверяют аргумент как есть, то есть первым делом проверяют, является ли 
+аргумент числом.*/
+
+/*Метод "Number.isNaN()" возвращает true только в том случае, если аргумент принадлежит к типу number и является 
+NaN. Во всех остальных случаях возвращает false.*/
+console.log(Number.isNaN(NaN)); // true NaN === number --> NaN === NaN
+console.log(Number.isNaN('abc')); // false 'abc' === number
+console.log(Number.isNaN('123')); // false '123' === number
+console.log(Number.isNaN(123)); // false 123 === number --> 123 === NaN
+console.log(Number.isNaN(Infinity)); // false Infinity === number --> Infinity === NaN
+console.log(Number.isNaN('')); // false '' === number
+
+console.log('--------------------------------------');
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+/*"Number.isFinite()" возвращает true только в том случае, если аргумент принадлежит к типу number и не является 
+NaN/Infinity/-Infinity. Во всех остальных случаях возвращает false.*/
+console.log(Number.isFinite(NaN)); // false NaN === number --> NaN !== NaN/Infinity/-Infinity
+console.log(Number.isFinite('abc')); // false 'abc' === number
+console.log(Number.isFinite('123')); // false '123' === number
+console.log(Number.isFinite(123)); // true 123 === number --> 123 !== NaN/Infinity/-Infinity
+console.log(Number.isFinite(Infinity)); // false Infinity === number --> Infinity !== NaN/Infinity/-Infinity
+console.log(Number.isFinite(-Infinity)); // false -Infinity === number --> -Infinity !== NaN/Infinity/-Infinity
+console.log(Number.isFinite('')); // false '' === number
+
+console.log('--------------------------------------');
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+console.log(0 === -0); // true
+
+/*Есть метод "Object.is()", который сравнивает значения примерно как ===, но более надежен в двух особых 
+ситуациях.*/
+
+console.log(Object.is(NaN, NaN)); // true
+console.log(Object.is(0, -0)); // false
+
+console.log('--------------------------------------');
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+/*При преобразовании строки, которая содержит числа и пробелы по бокам, пробелы будут проигнорированы.*/
+console.log(Number('   123')); // 123
+console.log(Number(' 1 23')); // NaN
+console.log(Number(' 1 2 3')); // NaN
+console.log(Number(' 12 3')); // NaN
+console.log(Number(' 12 3 ')); // NaN
+console.log(Number('123 ')); // 123
+console.log(Number(' 123 ')); // 123
+console.log(Number('12 3')); // NaN
+
+/*Методы "parseInt()" и "parseFloat()" читают числа из строки слева направо и если в процессе чтения возникает 
+ошибка, то они возвращают полученное до ошибки число. Эти методы вернут NaN, если не смогли прочитать ни одну 
+цифру.*/
+
+console.log(parseInt('4523g23')); // 4523
+console.log(parseInt('452.3g23')); // 452
+console.log(parseInt(' 452g23')); // 452
+console.log(parseInt(' 452g23 ')); // 452
+console.log(parseFloat('452.3g23')); // 452.3
+console.log(parseFloat('452.3g23 ')); // 452.3
+console.log(parseFloat(' 452.3g23 ')); // 452.3
+console.log(parseFloat('452g23')); // 452
+console.log(parseFloat('4522.32.4')); // 4522.32
+
+console.log(parseInt('g4522.32.4')); // NaN
+console.log(parseFloat('g4522.32.4')); // NaN
