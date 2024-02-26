@@ -3,16 +3,22 @@
 /*-------------------------------------------------------------------------------------------------------------*/
 
 function sum(a, b) {
-    // if (a < 0 || a > 9 || b < 0 || b > 9) {
-    //     return null;
-    // };
+    if (a < 0 || a > 9 || b < 0 || b > 9) {
+        return null;
+    };
 
     return a + b;
 };
 
 function test01(sumExample) {
-    let result = sumExample(1, 2);
+    /*Подготовка тестовых данных.*/
+    let a = 1;
+    let b = 2;
 
+    /*Проведение действий над тестовыми данными.*/
+    let result = sumExample(a, b);
+
+    /*Проверка соответствия полученного результата ожидаемому.*/
     if (result === 3) {
         console.log('test01 is fine');
     } else {
@@ -21,7 +27,10 @@ function test01(sumExample) {
 };
 
 function test02(sumExample) {
-    let result = sumExample(-1, 2);
+    let a = -1;
+    let b = 2;
+
+    let result = sumExample(a, b);
 
     if (result === null) {
         console.log('test02 is fine');
