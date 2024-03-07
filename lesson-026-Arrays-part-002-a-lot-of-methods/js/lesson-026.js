@@ -58,7 +58,7 @@ let array5 = [9, 10]
 console.log(array4.concat([6, 7])); // [1, 2, 3, 4, 5, 6, 7]
 console.log(array4.concat([6, 7], 8)); // [1, 2, 3, 4, 5, 6, 7, 8]
 console.log(array4.concat([6, 7], 8, array5)); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-console.log(array4.concat([6, 7], [], {a: 1})); // [1, 2, 3, 4, 5, 6, 7, { a: 1 }]
+console.log(array4.concat([6, 7], [], { a: 1 })); // [1, 2, 3, 4, 5, 6, 7, { a: 1 }]
 
 /*Если использовать массивоподобный объект со специальным свойством "Symbol.isConcatSpreadable", то он обработается
 как массив.*/
@@ -136,11 +136,11 @@ console.log('--------------------------------------');
 функция возвращает true, то поиск прекращается и возвращается найденный элемент, иначе возвращается undefined. 
 Указаннная функция может принимать до трех параметров: элемент, индекс элемента и сам массив. */
 let array9 = [
-    {a: 1},
-    {a: 2},
-    {a: 3},
-    {a: 3},
-    {a: 5}
+    { a: 1 },
+    { a: 2 },
+    { a: 3 },
+    { a: 3 },
+    { a: 5 }
 ];
 
 let item1 = array9.find(
@@ -171,11 +171,11 @@ console.log('--------------------------------------');
 
 /*Метод "filter()" работает также как и метод "find()", только возвращает массив всех найденных элементов.*/
 let array10 = [
-    {a: 1},
-    {a: 2},
-    {a: 3},
-    {a: 3},
-    {a: 5}
+    { a: 1 },
+    { a: 2 },
+    { a: 3 },
+    { a: 3 },
+    { a: 5 }
 ];
 
 let items1 = array10.filter(
@@ -193,11 +193,11 @@ console.log('--------------------------------------');
 /*Метод "map()" вызывает указанную функцию для каждого элемента массива и формирует новый массив с результатами
 вызванных функций.*/
 let array11 = [
-    {a: 1},
-    {a: 2},
-    {a: 3},
-    {a: 3},
-    {a: 5}
+    { a: 1 },
+    { a: 2 },
+    { a: 3 },
+    { a: 3 },
+    { a: 5 }
 ];
 
 // let items2 = array11.map(
@@ -333,16 +333,97 @@ let obj2 = {
 };
 
 let array20 = [
-    {age: 14},
-    {age: 18},
-    {age: 20},
-    {age: 64},
-    {age: 65},
-    {age: 66},
-    {age: 85}
+    { age: 14 },
+    { age: 18 },
+    { age: 20 },
+    { age: 64 },
+    { age: 65 },
+    { age: 66 },
+    { age: 85 }
 ];
 
 let result4 = array20.filter(obj2.canJoin, obj1);
 
 console.log(result4.length); // 3
 console.log(result4);
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+// function filterRangeInPlace(arr, a, b) {
+//     for (let i = 0; i < arr.length; i++) {
+//         if (a <= arr[i] <= b) {
+//             arr.splice(i, 1);
+//         };
+//     };
+// };
+
+// let arr = [5, 3, 8, 1];
+
+// filterRangeInPlace(arr, 1, 4); // удалены числа вне диапазона 1..4
+
+// console.log(arr); // [3, 1]
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+// let arr = [5, 2, 1, -10, 8];
+
+// arr.sort((a, b) => { return b - a});
+
+// console.log(arr); // 8, 5, 2, 1, -10
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+// let arr = ["HTML", "JavaScript", "CSS"];
+
+// function copySorted(arr) {
+//     return arr.slice(0).sort();
+// };
+
+// let sorted = copySorted(arr);
+
+// console.log(sorted); // CSS, HTML, JavaScript
+// console.log(arr); // HTML, JavaScript, CSS (без изменений)
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+// let vasya = { name: "Вася", age: 25 };
+// let petya = { name: "Петя", age: 30 };
+// let masha = { name: "Маша", age: 28 };
+
+// let users = [vasya, petya, masha];
+
+// let names = users.map(
+//     (item, index, array) => {return item.name}
+// );
+
+// console.log(names); // Вася, Петя, Маша
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+// let vasya = { name: "Вася", surname: "Пупкин", id: 1 };
+// let petya = { name: "Петя", surname: "Иванов", id: 2 };
+// let masha = { name: "Маша", surname: "Петрова", id: 3 };
+
+// let users = [vasya, petya, masha];
+
+// let usersMapped = users.map(
+//     (item, index, array) => {
+//         item.fullName = `${item.name} ${item.surname}`;
+//         delete item.name;
+//         delete item.surname;
+
+//         return item
+//     }
+// );
+
+// /*
+// usersMapped = [
+//     { fullName: "Вася Пупкин", id: 1 },
+//     { fullName: "Петя Иванов", id: 2 },
+//     { fullName: "Маша Петрова", id: 3 }
+// ]
+// */
+
+// console.log(usersMapped) // 1
+// console.log(usersMapped[0].id) // 1
+// console.log(usersMapped[0].fullName) // Вася Пупкин
