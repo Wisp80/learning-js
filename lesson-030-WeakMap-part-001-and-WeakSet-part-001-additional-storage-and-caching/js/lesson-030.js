@@ -5,7 +5,7 @@
 /*WeakMap не предотвращает удаление объектов сборщиком мусора, когда эти объекты выступают в качестве ключей. Также
 WeakMap отличается от Map в том, что ключи в WeakMap должны быть объектами, а не примитивными значениями.*/
 let weakMap01 = new WeakMap();
-let obj01 = {a: 1};
+let obj01 = { a: 1 };
 weakMap01.set(obj01, 'a');
 // weakMap01.set('b', 1); // Uncaught TypeError: WeakMap key "b" must be an object or an unregistered symbol
 
@@ -40,7 +40,7 @@ console.log('--------------------------------------');
 в WeakMap, используя объект как ключ, и когда сборщик мусора удалит объекты из памяти, ассоциированные с ними данные 
 тоже автоматически исчезнут.*/
 let weakMap02 = new WeakMap();
-let obj02 = {a: 1};
+let obj02 = { a: 1 };
 weakMap02.set(obj02, 'very important data');
 obj02 = null; // Очень важные данные были удалены.
 
@@ -62,7 +62,7 @@ function process(obj) {
     return cache.get(obj);
 };
 
-let obj03 = {a: 1};
+let obj03 = { a: 1 };
 let result03_01 = process(obj03); // Высчитали результат.
 let result03_02 = process(obj03); // Взяли результат из кэша.
 obj03 = null; // Очистили "кэш".
@@ -79,9 +79,9 @@ obj03 = null; // Очистили "кэш".
 
 let usedObjectsSet = new WeakSet();
 
-let obj04 = {a: 1};
-let obj05 = {b: 2};
-let obj06 = {c: 3};
+let obj04 = { a: 1 };
+let obj05 = { b: 2 };
+let obj06 = { c: 3 };
 
 usedObjectsSet.add(obj04);
 usedObjectsSet.add(obj05);
