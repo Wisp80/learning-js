@@ -125,7 +125,7 @@ obj06.e = obj07;
 свойства "cc" нет в списке.*/
 console.log(JSON.stringify(obj07, ['b', 'c'])); // "{"b":"b","c":[{},{}]}"
 /*Включим остальные свойства, что все, кроме свойства "e" из объекта "obj06", было сериализовано.*/
-console.log(JSON.stringify(obj07, ['b', 'c', 'd', 'cc', 'a'])); 
+console.log(JSON.stringify(obj07, ['b', 'c', 'd', 'cc', 'a']));
 // "{"b":"b","c":[{"cc":"c1"},{"cc":"c2"}],"d":{"a":"a"}}"
 
 /*Если вторым параметром передать функцию в метод "JSON.stringify()", то эта функция будет вызываться для каждой 
@@ -195,7 +195,7 @@ console.log('--------------------------------------');
 /*Как и метод "toString()" для преобразования строк, объект может предоставлять метод "toJSON()" для 
 преобразования в JSON. Метод "JSON.stringify()" автоматически вызывает его, если он есть.*/
 let obj09 = { a: 1 };
-let obj10 = { b: 2, obj09};
+let obj10 = { b: 2, obj09 };
 // let obj10 = { b: 2, obj09: obj09 };
 
 console.log(JSON.stringify(obj09)); // "{"a":1}"
@@ -252,6 +252,6 @@ let obj12 = JSON.parse(
     }
 );
 
-console.log(obj12); 
+console.log(obj12);
 // Object { b: "b", c: (2) […], d: {…}, date: Date Thu Nov 30 2017 15:00:00 GMT+0300 (Москва, стандартное время) }
 console.log(obj12.date.getDate()); // 30
