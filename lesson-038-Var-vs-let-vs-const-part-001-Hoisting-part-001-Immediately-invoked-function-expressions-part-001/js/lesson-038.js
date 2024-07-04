@@ -237,4 +237,4 @@ function func09() {
 };
 
 // func09();
-// console.log(e); // 4, с "use sctrict" будет ошибка: Uncaught ReferenceError: assignment to undeclared variable
+// console.log(e); // 4, с "use sctrict" будет ошибка: Uncaught ReferenceError: assignment to undeclared variable e
